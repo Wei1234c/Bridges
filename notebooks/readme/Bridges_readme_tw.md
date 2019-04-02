@@ -13,7 +13,7 @@ Wei Lin
 
 ## [使用情境]
 先說說 使用情境，合用的話再往下看:  
-- 使用 PC 直接驅動  [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) 周邊裝置
+- 使用 PC 透過 bus-converter 驅動 [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) 介面的周邊裝置
     - 例如 控制 SPI介面的 [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [直接收發 LoRa 訊息封包](https://youtu.be/Ae9dvGm-bCQ)。    
 - 在 [PyCharm](https://www.jetbrains.com/pycharm/) 的環境下開發 I2C/SPI/GPIO/UART裝置 的 驅動程式，可以 [設定中斷點 並隨時 檢視變數值](https://youtu.be/rhYNySJQ0Rg)。
     - 不需要插入許多 print 指令，也不需要重複地 上傳程式碼到 控制器 上。
@@ -163,7 +163,7 @@ uart = UART(1, 9600)
 uart.init(9600, bits=8, parity=None, stop=1)
 ```
 
-###  Raspberry Pi
+###  模擬 Raspberry Pi 上的介面
 - **模擬 [smbus2.SMbus](https://pypi.org/project/smbus2/)**
 
 ```
