@@ -11,7 +11,7 @@ Wei Lin
 
 ![Grand Island bridges](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Between_the_Grand_Island_bridges.jpg)  
 
-## [Usage scenarios]
+## [Usage Scenarios]
 Read on if these scenarios suit you:
 - Use the PC to drive (via bus-converter) [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) interfaced peripheral devices.
      - For example, using SPI-interfaced [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [send and receive LoRa message packets](https://youtu.be/Ae9dvGm-bCQ) directly.
@@ -80,7 +80,7 @@ Read on if these scenarios suit you:
 
 ```
 # On ESP32 with MicroPython
-From machine import I2C
+from machine import I2C
 
 I2c = I2C(freq = 400000)
 ```
@@ -88,7 +88,7 @@ I2c = I2C(freq = 400000)
 
 ```
 # On PC
-From bridges.ftdi.controllers.i2c import I2cController
+from bridges.ftdi.controllers.i2c import I2cController
 I2C = I2cController().I2C
 
 I2c = I2C(freq = 400000)
@@ -99,7 +99,7 @@ I2c = I2C(freq = 400000)
 
 ```
 # On ESP32 with MicroPython
-From machine import SPI
+from machine import SPI
 
 Spi = SPI(id, baudrate = 10000000, polarity = 0, phase = 0)
 Spi.init()
@@ -107,7 +107,7 @@ Spi.init()
 ---
 ```
 # On PC
-From bridges.ftdi.controllers.spi import SpiController
+from bridges.ftdi.controllers.spi import SpiController
 SPI = SpiController().SPI
 
 Spi = SPI(id, baudrate = 10000000, polarity = 0, phase = 0)
@@ -119,7 +119,7 @@ Spi.init()
 
 ```
 # On ESP32 with MicroPython
-From machine import Pin
+from machine import Pin
 
 P0 = Pin(0, Pin.OUT)
 P0.value(0)
@@ -132,9 +132,9 @@ Print(p2.value())
 
 ```
 # On PC
-From bridges.interfaces.micropython.machine import Pin
-From bridges.ftdi.controllers.gpio import GpioController
-Machine = GpioController()
+from bridges.interfaces.micropython.machine import Pin
+from bridges.ftdi.controllers.gpio import GpioController
+machine = GpioController()
 
 P0 = machine.Pin(0, mode = Pin.OUT)
 P0.value(0)
@@ -148,7 +148,7 @@ Print(p2.value())
 
 ```
 # On ESP32 with MicroPython
-From machine import UART
+from machine import UART
 
 Uart = UART(1, 9600)
 Uart.init(9600, bits=8, parity=None, stop=1)
@@ -156,7 +156,7 @@ Uart.init(9600, bits=8, parity=None, stop=1)
 ---
 ```
 # On PC
-From bridges.ftdi.controllers.uart import UartController
+from bridges.ftdi.controllers.uart import UartController
 UART = UartController().UART
 
 Uart = UART(1, 9600)
