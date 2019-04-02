@@ -199,7 +199,6 @@ spi.xfer(to_send)
 ---
 ```
 # 在 PC 的環境下
-import controller
 from bridges.ftdi.controllers.spi import SpiController
 spidev = SpiController() 
 

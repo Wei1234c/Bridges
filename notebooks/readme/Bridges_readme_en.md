@@ -54,25 +54,25 @@ Read on if these scenarios suit you:
 
 
 
-## [Goals and Features]
+## [Goals and Features]  
 
 - Writing a package to simulate the I2C/SPI/GPIO/UART interface objects for MicroPython+ESP8266/ESP32 and Raspberry Pi on PC:
-   - Interface objects in MicroPython + ESP8266 / ESP32 environment:
-       - machine.I2C
-       - machine.SPI
-       - machine.Pin
-       - machine.UART -
-   - Interface objects in the Raspberry Pi environment:
-       - smbus2.SMbus
-       - spidev.SpiDev
-       - RPi.GPIO
-       - PySerial.Serial
+    - Interface objects in MicroPython + ESP8266 / ESP32 environment:
+        - machine.I2C
+        - machine.SPI
+        - machine.Pin
+        - machine.UART -
+    - Interface objects in the Raspberry Pi environment:
+        - smbus2.SMbus
+        - spidev.SpiDev
+        - RPi.GPIO
+        - PySerial.Serial
 - Can drive many bus-converters simultaneously:
-     - Multiple bus-converters can be connected at the same time, and the number is limited only by the specification of USB and power supply capability.
+    - Multiple bus-converters can be connected at the same time, and the number is limited only by the specification of USB and power supply capability.
 - Can function under Windows / Linux:
-     - No modification is required.
+    - No modification is required.
 - Can be used on PC / Raspberry Pi or any machines that can run PyFtdi package:
-     - No modification is required.
+    - No modification is required.
 
 ## [How to use]
 ### Simulating for MicroPython + ESP8266 / ESP32
@@ -198,8 +198,7 @@ spi.xfer(to_send)
 ```  
 ---
 ```
-# On PC
-import controller
+# On PC 
 from bridges.ftdi.controllers.spi import SpiController
 spidev = SpiController() 
 
