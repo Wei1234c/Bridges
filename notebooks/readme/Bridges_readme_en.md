@@ -15,8 +15,8 @@ Wei Lin
 Read on if these scenarios suit you:
 - Use the PC to drive (via bus-converter) [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) interfaced peripheral devices.
      - For example, using SPI-interfaced [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [send and receive LoRa message packets](https://youtu.be/Ae9dvGm-bCQ) directly.
-- On your PC, simulating the I2C / SPI / GPIO / UART intreface objects of ESP32 / Raspberry, in order to develop the peripheral device drivers in the [PyCharm](https://www.jetbrains.com/pycharm/) environment, you can [ set the break point and inspect variables easily](https://youtu.be/rhYNySJQ0Rg). 
-     - Need no more to "print" to debug, or repeatedly upload code to the controller.
+- On your PC, simulating the I2C / SPI / GPIO / UART intreface objects of ESP32 / Raspberry, in order to develop the peripheral device drivers in the [PyCharm](https://www.jetbrains.com/pycharm/) environment, you can [ set breakpoints and inspect variables easily](https://youtu.be/rhYNySJQ0Rg). 
+     - No more "print" to debug, no more repeatedly uploading code to the controller.
 
 ## [Motivations]
 
