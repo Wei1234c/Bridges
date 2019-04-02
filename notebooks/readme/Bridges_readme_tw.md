@@ -15,7 +15,7 @@ Wei Lin
 先說說 使用情境，合用的話再往下看:  
 - 使用 PC 直接驅動  [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) 周邊裝置
     - 例如 控制 SPI介面的 [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [直接收發 LoRa 訊息封包](https://youtu.be/Ae9dvGm-bCQ)。    
-- 在 [PyCharm](https://www.jetbrains.com/pycharm/) 的環境下開發 I2C/SPI/GPIO/UART裝置 的 驅動程式，可以設定[中斷點](https://www.jetbrains.com/help/pycharm/using-breakpoints.html) 並隨時[檢視變數值](https://www.jetbrains.com/help/pycharm/debug-tool-window-variables.html)。
+- 在 [PyCharm](https://www.jetbrains.com/pycharm/) 的環境下開發 I2C/SPI/GPIO/UART裝置 的 驅動程式，可以 [設定中斷點 並隨時 檢視變數值](https://youtu.be/rhYNySJQ0Rg)。
     - 不需要插入許多 print 指令，也不需要重複地 上傳程式碼到 控制器 上。
 
 ## [緣由] 
@@ -57,12 +57,12 @@ Wei Lin
 ## [目標]
 
 - 寫一套 package，要能在PC上 模擬 MicroPython+ESP8266/ESP32 和 Raspberry Pi 上的 buses 功能界面： 
-  - MicroPython + ESP8266 / ESP32
+  - 模擬 MicroPython + ESP8266 / ESP32 環境下的:
       - machine.I2C
       - machine.SPI
       - machine.Pin
       - machine.UART              - 
-  - Raspberry Pi
+  - 模擬 Raspberry Pi 環境下的:
       - smbus2.SMbus
       - spidev.SpiDev
       - RPi.GPIO
@@ -251,12 +251,12 @@ ser.close()
 ```
 
 ## [測試實例]
-- Break points and variables inspection
-[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
+- Breakpoints and variables inspection
+[![Breakpoints and variables inspection](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Breakpoints_and_variables_inspection.gif)](https://youtu.be/rhYNySJQ0Rg)   
 
 
 - Transceive LoRa packages directly from your laptop
-[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
+[![Transceive LoRa packages directly from your laptop](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
 
 #### Notes
 - 目前主要支援 FTDI 晶片。CH341 下只有 I2C 和 GPIO 功能，無 SPI，但 UART 可直接透過 原廠的 driver 驅動
