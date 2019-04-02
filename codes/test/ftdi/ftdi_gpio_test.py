@@ -5,10 +5,10 @@ ctrl = GpioController()
 # ctrl = GpioController(product = 'ft2232h', interface = 2)
 print(ctrl.addressable_pins)
 import bridges.interfaces.micropython.machine as I_machine
+from bridges.interfaces.micropython.machine import Pin
 
-
-pin_in = ctrl.Pin('ADBUS5', mode = I_machine.Pin.IN)
-pin_out = ctrl.Pin('ADBUS6', mode = I_machine.Pin.OUT)
+pin_in = ctrl.Pin('ADBUS5', mode = Pin.IN)
+pin_out = ctrl.Pin('ADBUS6', mode = Pin.OUT)
 # pin_in = ctrl.Pin('BDBUS5', mode = I_machine.Pin.IN)
 # pin_out = ctrl.Pin('BDBUS6', mode = I_machine.Pin.OUT)
 

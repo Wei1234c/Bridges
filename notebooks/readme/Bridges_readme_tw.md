@@ -75,27 +75,196 @@ Wei Lin
     - 同一套程式通用，不須做任何修改。
 
 ## [使用方式] 
-- MicroPython + ESP8266 / ESP32
-  - machine.I2C
-  - machine.SPI
-  - machine.Pin
-  - machine.UART              - 
-- Raspberry Pi
-  - smbus2.SMbus
-  - spidev.SpiDev
-  - RPi.GPIO
-  - PySerial.Serial
+### 模擬 MicroPython + ESP8266 / ESP32 上的介面
+- **模擬 [machine.I2C](https://docs.micropython.org/en/latest/library/machine.I2C.html)**
+
+```
+# 在 MicroPython 的環境下
+from machine import I2C
+
+i2c = I2C(freq = 400000) 
+```
+---
+
+```
+# 在 PC 的環境下
+from bridges.ftdi.controllers.i2c import I2cController
+I2C = I2cController().I2C
+
+i2c = I2C(freq = 400000)
+```
+--- 
+    
+- **模擬 [machine.SPI](https://docs.micropython.org/en/latest/library/machine.SPI.html)**
+
+```
+# 在 MicroPython 的環境下
+from machine import SPI
+
+spi = SPI(id, baudrate = 10000000, polarity = 0, phase = 0)
+spi.init()
+```
+---
+```
+# 在 PC 的環境下
+from bridges.ftdi.controllers.spi import SpiController 
+SPI = SpiController().SPI
+
+spi = SPI(id, baudrate = 10000000, polarity = 0, phase = 0) 
+spi.init()
+```
+  
+  
+- **模擬 [machine.Pin](https://docs.micropython.org/en/latest/library/machine.Pin.html)**
+
+```
+# 在 MicroPython 的環境下
+from machine import Pin 
+
+p0 = Pin(0, Pin.OUT) 
+p0.value(0)
+p0.value(1)
+
+p2 = Pin(2, Pin.IN, Pin.PULL_UP)
+print(p2.value())
+```
+---
+
+```
+# 在 PC 的環境下
+from bridges.interfaces.micropython.machine import Pin
+from bridges.ftdi.controllers.gpio import GpioController 
+machine = GpioController()  
+
+p0 = machine.Pin(0, mode = Pin.OUT)
+p0.value(0)
+p0.value(1)
+
+p2 = machine.Pin(2, mode = Pin.IN)
+print(p2.value())
+```
+  
+- **模擬 [machine.UART](https://docs.micropython.org/en/latest/library/machine.UART.html)**
+
+```
+# 在 MicroPython 的環境下
+from machine import UART
+
+uart = UART(1, 9600) 
+uart.init(9600, bits=8, parity=None, stop=1)
+```  
+---
+```
+# 在 PC 的環境下
+from bridges.ftdi.controllers.uart import UartController
+UART = UartController().UART
+
+uart = UART(1, 9600)
+uart.init(9600, bits=8, parity=None, stop=1)
+```
+
+###  Raspberry Pi
+- **模擬 [smbus2.SMbus](https://pypi.org/project/smbus2/)**
+
+```
+# 在 Raspberry Pi 的環境下
+from smbus2 import SMBus 
+
+bus = SMBus(1)
+b = bus.read_byte_data(80, 0)
+print(b) 
+```  
+---
+```
+# 在 PC 的環境下
+from bridges.ftdi.controllers.i2c import I2cController
+SMBus = I2cController().SMBus
+
+bus = SMBus(1)  # the bus number actually doesn't matter.
+b = bus.read_byte_data(80, 0)
+print(b) 
+```
+
+- **模擬 [spidev.SpiDev](https://pypi.org/project/spidev/)**
+
+```
+# 在 Raspberry Pi 的環境下
+import spidev
+
+spi = spidev.SpiDev()
+spi.open(bus, device)
+to_send = [0x01, 0x02, 0x03]
+spi.xfer(to_send)
+```  
+---
+```
+# 在 PC 的環境下
+import controller
+from bridges.ftdi.controllers.spi import SpiController
+spidev = SpiController() 
+
+spi = spidev.SpiDev()
+spi.open(bus, device)
+to_send = [0x01, 0x02, 0x03]
+spi.xfer(to_send)
+
+```
+
+- **模擬 [RPi.GPIO](https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/)**
+
+```
+# 在 Raspberry Pi 的環境下
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD) 
+GPIO.setup(6, GPIO.OUT)
+```  
+---
+```
+# 在 PC 的環境下
+from bridges.ftdi.adapters.rpi.RPi import GPIO 
+
+GPIO.setmode(GPIO.BOARD)  # mode actuall doesn't  matter.
+GPIO.setup(6, GPIO.OUT)
+
+```
+- **模擬 [pySerial.Serial](https://pyserial.readthedocs.io/en/latest/shortintro.html)**
+
+```
+# 在 Raspberry Pi 的環境下
+import serial
+ser = serial.Serial('/dev/ttyUSB0') 
+
+print(ser.name)        
+ser.write(b'hello')     
+ser.close()            
+```  
+---
+```
+# 在 PC 的環境下
+from bridges.ftdi.controllers.uart import UartController
+ser = UartController().Serial() 
+
+print(ser.name)        
+ser.write(b'hello')     
+ser.close()      
+```
 
 ## [測試實例]
-- 測試設備與組成
-  - 以 PC 執行 client 端程式將 tasks 分派給一個由三個 ESP32 所組成的 cluster 來處理，請參考下列 video 的說明。
-  - 詳細的程式碼，請參考 [測試用的 Jupyter notebook](https://github.com/Wei1234c/Broccoli/blob/master/notebooks/demo/mini%20cluster%20test.ipynb)   
- 
+- Break points and variables inspection
+[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
+
+
 - Transceive LoRa packages directly from your laptop
-[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Broccoli/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
+[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
 
 #### Notes
-- 目前主要支援 FTDI 晶片，CH341 下只有 I2C 和 GPIO 功能，無 SPI
-- FTDI 
-    - 無 IRQ
-    - 無 PWM
+- 目前主要支援 FTDI 晶片。CH341 下只有 I2C 和 GPIO 功能，無 SPI，但 UART 可直接透過 原廠的 driver 驅動
+- FTDI 晶片的限制
+    - 無 IRQ。因為 FT232H/FT2232H 並沒有 "interrupt input" 類型的 endpoint，要模擬 IRQ 的功能只能用 polling 的方式，太耗費 CPU 資源。
+    - 無 PWM。PyFtdi、FT232H/FT2232H 並沒有支援。
+    - 同一個 channel中，GPIO 的功能無法和 I2C/UART 共存，但是可以和 SPI共存。
+    - GPIO 無 pull-up / pull-down 功能
+
+#### [References](https://github.com/Wei1234c/Bridges/tree/master/references)
+
