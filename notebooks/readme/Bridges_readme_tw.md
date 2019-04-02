@@ -1,6 +1,6 @@
 
 # Bridges 
-### PC as an ESP32 simulator ?!
+### PC as an ESP32 simulator ?
 ### Pretend your PC a Raspberry Pi or an ESP32 to connect I2C/SPI/GPIO/UART peripherals. 
 
 
@@ -38,11 +38,19 @@ Wei Lin
     - 例如在開發裝置驅動程式的時候，就可以用例如 [PyCharm](https://www.jetbrains.com/pycharm/) 之類強大的 IDE，可以設定**中斷點**，並隨時**監看變數值**，應該會相當方便。
     - 不需要插入許多 print 指令，也不需要重複地 上傳程式碼到 控制器 上，程式整潔並節省開發時間。
 
-[FT232H](https://www.ftdichip.com/Products/ICs/FT232H.htm) DevKit  
- <p><img src='https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/FT232H.jpg'  width="320" align="left"></p>  
 
-[CH341](http://www.wch.cn/products/CH341.html) DevKit  
- <p><img src='https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/CH341a.jpg'  width="320" align="left"></p>  
+<table  align="center">
+  <tr >
+    <th>FT232H</th>
+    <th>FT2232H</th>
+    <th>CH341A</th> 
+  </tr>
+  <tr>
+    <td><img src='https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/FT232H.jpg'  width="320"  ></td>
+    <td><img src='https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/FT2232H.jpg'  width="320"  ></td>
+    <td><img src='https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/CH341a.jpg'  width="320"  ></td> 
+  </tr> 
+</table>
 
 
 
@@ -83,16 +91,8 @@ Wei Lin
   - 以 PC 執行 client 端程式將 tasks 分派給一個由三個 ESP32 所組成的 cluster 來處理，請參考下列 video 的說明。
   - 詳細的程式碼，請參考 [測試用的 Jupyter notebook](https://github.com/Wei1234c/Broccoli/blob/master/notebooks/demo/mini%20cluster%20test.ipynb)   
  
- 
-[![ROS chatters on Windows](https://raw.githubusercontent.com/Wei1234c/Broccoli/master/jpgs/youtube.jpeg)](https://youtu.be/LbiSnh8w1kM)  
-
-
-
-## [優缺點]
-- 缺點
-    - 無 PWM
-    - 無 IRQ
-- 優點
+- Transceive LoRa packages directly from your laptop
+[![Transceive LoRa packages directly from your laptop.](https://raw.githubusercontent.com/Wei1234c/Broccoli/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
 
 #### Notes
 - 目前主要支援 FTDI 晶片，CH341 下只有 I2C 和 GPIO 功能，無 SPI
