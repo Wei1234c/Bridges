@@ -54,7 +54,7 @@ i2c.scan()
 
 # ch341A.set_output2()
 
-from adafruit import Display
+from display_ssd1306_i2c import Display
 
 
 d = Display(i2c)  # d = Display(smbus2)
