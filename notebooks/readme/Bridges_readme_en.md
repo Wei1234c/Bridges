@@ -258,16 +258,16 @@ ser.close()
 [![Transceive LoRa packages directly from your laptop](https://raw.githubusercontent.com/Wei1234c/Bridges/master/jpgs/Transceive_LoRa_packages_from_laptop.gif)](https://youtu.be/Ae9dvGm-bCQ)   
 
 #### Notes
-- Mainly supports FTDI chips for now. 
-    - For CH341A:
-        - Only I2C and GPIO functions are implemented, no SPI
-        - UART can be driven directly with the driver from WCH.
+- Mainly supports FTDI chips for now.  
+    - For CH341A:  
+        - Only I2C and GPIO functions are implemented, no SPI.  
+        - UART can be driven directly with the driver from WCH.  
 - FTDI chip limitations
-     - No IRQ. 
-         - The FT232H/FT2232H does not have endpoint of "interrupt input" type, IRQ functionality can only achieved with polling, which is too CPU intensive.
-     - No PWM. PyFtdi, FT232H/FT2232H doesn't support.
-     - In the same channel, the functionality of GPIO can coexist with SPI, but not with I2C/UART.
-     - GPIO has no pull-up / pull-down functions.
+    - No IRQ. 
+    - The FT232H/FT2232H does not have endpoint of "interrupt input" type, IRQ functionality can only achieved with polling, which is too CPU intensive.  
+    - No PWM. PyFtdi, FT232H/FT2232H doesn't support.  
+    - In the same channel, the functionality of GPIO can coexist with SPI, but not with I2C/UART.  
+    - GPIO has no pull-up / pull-down functions.  
 
 #### [References](https://github.com/Wei1234c/Bridges/tree/master/references)
 
