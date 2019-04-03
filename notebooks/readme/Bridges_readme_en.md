@@ -61,7 +61,7 @@ Read on if these scenarios suit you:
         - machine.I2C
         - machine.SPI
         - machine.Pin
-        - machine.UART -
+        - machine.UART
     - Interface objects in the Raspberry Pi environment:
         - smbus2.SMbus
         - spidev.SpiDev

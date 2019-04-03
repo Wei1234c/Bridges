@@ -61,7 +61,7 @@ Wei Lin
       - machine.I2C
       - machine.SPI
       - machine.Pin
-      - machine.UART              - 
+      - machine.UART
   - 模擬 Raspberry Pi 環境下的:
       - smbus2.SMbus
       - spidev.SpiDev
