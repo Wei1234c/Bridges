@@ -1,7 +1,7 @@
 
 # Bridges 
 ### PC as an ESP32 simulator ?
-### Pretend your PC a Raspberry Pi or an ESP32 to connect I2C/SPI/GPIO/UART peripherals. 
+### Pretend your PC a Raspberry Pi or an ESP32 to connect I2C / SPI / GPIO / UART peripherals. 
 
 
 [GitHub repo.](https://github.com/Wei1234c/Bridges)
@@ -14,29 +14,29 @@ Wei Lin
 ## [Usage Scenarios]
 Read on if these scenarios suit you:
 - Use the PC to drive (via bus-converter) [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) / [SPI](https://en.wikipedia.org/wiki/SPI) / [GPIO](https://en.wikipedia.org/wiki/General-purpose_input/output) / [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) interfaced peripheral devices.
-     - For example, using SPI-interfaced [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [send and receive LoRa message packets](https://youtu.be/Ae9dvGm-bCQ) directly.
+    - For example, using SPI-interfaced [SX1278 LoRa transceiver](https://github.com/Wei1234c/SX127x_driver_for_MicroPython_on_ESP8266), [send and receive LoRa message packets](https://youtu.be/Ae9dvGm-bCQ) directly.
 - On your PC, simulating the I2C / SPI / GPIO / UART intreface objects of ESP32 / Raspberry, in order to develop the peripheral device drivers in the [PyCharm](https://www.jetbrains.com/pycharm/) environment, you can [ set breakpoints and inspect variables easily](https://youtu.be/rhYNySJQ0Rg). 
-     - No more "print" to debug, no more repeatedly uploading code to the controller.
+    - No more "print" to debug, no more repeatedly uploading code to the controller.
 
 ## [Motivations]
 
 - **Need to use some I2C/SPI/GPIO/UART interfaced device with my PC**:
-    - One of my Python projects needs to use a SPI-interfaced device.
-    - However, there is no external SPI interface available on the PC, therefore comes the bus-converter.
+    - One of my Python projects needs to use a SPI-interfaced device.
+    - However, there is no external SPI interface available on the PC, therefore comes the bus-converter.
 - **Bus-Converters selection**:
-    - There are many USB to I2C/SPI/GPIO/UART converters available on the market.[FT232H (1 channel)](www.ftdichip.com/Products/ICs/FT232H.htm) / [FT2232H (2 channels)](https://www.ftdichip.com/Products/ICs/FT2232H.htm) from [FTDI]([https://www.ftdichip.com/) and [CH341](http://www.wch.cn/products/CH341.html) from [WCH](http://www.wch.cn/) ... is popular. FTDI's documentation and development resources are quite complete and relatively easy to develop.
-    - [PyFtdi](http://eblot.github.io/pyftdi/) was choosen to drive FTDI chips, it only depands on [PyUSB](https://github.com/walac/pyusb/blob/master/docs/tutorial.rst). In addition, we nee also...
+    - There are many USB to I2C/SPI/GPIO/UART converters available on the market.[FT232H (1 channel)](www.ftdichip.com/Products/ICs/FT232H.htm) / [FT2232H (2 channels)](https://www.ftdichip.com/Products/ICs/FT2232H.htm) from [FTDI]([https://www.ftdichip.com/) and [CH341](http://www.wch.cn/products/CH341.html) from [WCH](http://www.wch.cn/) ... is popular. FTDI's documentation and development resources are quite complete and relatively easy to develop.
+    - [PyFtdi](http://eblot.github.io/pyftdi/) was choosen to drive FTDI chips, it only depands on [PyUSB](https://github.com/walac/pyusb/blob/master/docs/tutorial.rst). In addition, we nee also...
 - **Drivers for the device**:
-    - Besides communicating with devices via I2C/SPI/GPIO/UART, we also need drivers. We need [SSD1306 (Display Panel Control IC) driver](https://github.com/adafruit/Adafruit_SSD1306) to use the OLED display.
-    - Many of those drivers can be found in [ESP8266](https://www.espressif.com/en/products/hardware/esp8266ex/overview) / [ESP32](https://www.espressif.com/En/products/hardware/esp32/overview) / [Raspberry Pi](https://www.raspberrypi.org/) communities. They are probably [written in (Mico) Python](https://github.com/lemariva/uPySensors), some can run directly on PC with little or no modification, it saves time to re-use them, but...
+    - Besides communicating with devices via I2C/SPI/GPIO/UART, we also need drivers. We need [SSD1306 (Display Panel Control IC) driver](https://github.com/adafruit/Adafruit_SSD1306) to use the OLED display.
+    - Many of those drivers can be found in [ESP8266](https://www.espressif.com/en/products/hardware/esp8266ex/overview) / [ESP32](https://www.espressif.com/En/products/hardware/esp32/overview) / [Raspberry Pi](https://www.raspberrypi.org/) communities. They are probably [written in (Mico) Python](https://github.com/lemariva/uPySensors), some can run directly on PC with little or no modification, it saves time to re-use them, but...
 - **Requires Adapters to convert interfaces**:
-    - These drivers were originally designed to go along with, for example, interface objects such as [machine.SPI](https://docs.micropython.org/en/latest/library/machine.SPI.html) or [spidev.SpiDev](https://github.com/doceme/py-spidev).
+    - These drivers were originally designed to go along with, for example, interface objects such as [machine.SPI](https://docs.micropython.org/en/latest/library/machine.SPI.html) or [spidev.SpiDev](https://github.com/doceme/py-spidev).
     - They have interfaces different from [SPI operation functions provided by PyFtdi](http://eblot.github.io/pyftdi/api/spi.html#pyftdi.spi.SpiPort),  we need **[Adapters](https://en.wikipedia.org/wiki/Adapter_pattern)** to glue them together.
 - **Pretend your PC an ESP8266 / ESP32 / Raspberry Pi**:
-    - As long as the device driver can run on a PC, and the SPI interface object it faces has exactly the same behavior of the SPI interface object on the ESP32, then the PC "IS" an ESP32 to the device driver. So in this cases, **PC is an ESP32 simulator**, at least to the device driver. So, we can...
+    - As long as the device driver can run on a PC, and the SPI interface object it faces has exactly the same behavior of the SPI interface object on the ESP32, then the PC "IS" an ESP32 to the device driver. So in this cases, **PC is an ESP32 simulator**, at least to the device driver. So, we can...
 - **Utilize powerful development resources and debugging environment from PC**:
-    - For example, when developing a device driver, you can use [PyCharm](https://www.jetbrains.com/pycharm/) to set **breakpoints** and to **inspect variables** whenever needed.
-    - No more "print" to debug, no more repeatedly uploading code to the controller. 
+    - For example, when developing a device driver, you can use [PyCharm](https://www.jetbrains.com/pycharm/) to set **breakpoints** and to **inspect variables** whenever needed.
+    - No more "print" to debug, no more repeatedly uploading code to the controller. 
 
 
 <table  align="center">

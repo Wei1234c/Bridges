@@ -1,7 +1,6 @@
 
 # Bridges 
-### PC as an ESP32 simulator ?
-### Pretend your PC a Raspberry Pi or an ESP32 to connect I2C/SPI/GPIO/UART peripherals. 
+### 讓 PC 像 Raspberry Pi 或 ESP32 一樣 連接 I2C / SPI / GPIO / UART 週邊裝置
 
 
 [GitHub repo.](https://github.com/Wei1234c/Bridges)

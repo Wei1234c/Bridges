@@ -4,8 +4,8 @@ from bridges.ftdi.controllers.gpio import GpioController
 ctrl = GpioController()
 # ctrl = GpioController(product = 'ft2232h', interface = 2)
 print(ctrl.addressable_pins)
-import bridges.interfaces.micropython.machine as I_machine
 from bridges.interfaces.micropython.machine import Pin
+
 
 pin_in = ctrl.Pin('ADBUS5', mode = Pin.IN)
 pin_out = ctrl.Pin('ADBUS6', mode = Pin.OUT)
