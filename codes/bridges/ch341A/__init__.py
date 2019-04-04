@@ -235,9 +235,7 @@ class CH341A(USBdevice):
 
 
     def __init__(self, address = None, mode = 'Synchronous_Serial'):
-        super().__init__(vid = CH341A.ID_VENDOR,
-                         pid = CH341A.MODES[mode]['idProduct'],
-                         address = address)
+        super().__init__(vid = CH341A.ID_VENDOR, pid = CH341A.MODES[mode]['idProduct'], address = address)
         self.interrupt_read = self.endpoints[CH341A.ENDPOINTS.INTERRUPT_IN].read
         self.bulk_read = self.endpoints[CH341A.ENDPOINTS.BULK_IN].read
         self.stream_mode = 0x82

@@ -12,9 +12,9 @@ class USBdevice(usb.core.Device):
 
 
     def __init__(self, vid, pid, address = None, configuration = None):
-        kwargs = dict(idVendor = vid, idProduct = pid) \
-            if address is None else \
-            dict(idVendor = vid, idProduct = pid, address = address)
+        kwargs = dict(idVendor = vid, idProduct = pid)
+        if address is not None:
+            kwargs['address'] = address
         dev = usb.core.find(**kwargs)
         if not dev:
             raise ValueError("Device not found ({:x}:{:x} address:{})".format(vid, pid, address or ''))
