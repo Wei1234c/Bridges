@@ -74,6 +74,26 @@ class USBdevice(usb.core.Device):
         return devices
 
 
+    def get_descriptor(self, desc_size, desc_type, desc_index, wIndex = 0):
+        return usb.control.get_descriptor(self, desc_size, desc_type, desc_index, wIndex)
+
+
+    def get_string(self, index, langid = None):
+        return usb.util.get_string(self, index, langid)
+
+
+    def get_strings(self, lang_id = None, max = 127):
+        descriptors = []
+
+        for i in range(max):
+            try:
+                descriptors.append(self.get_string(i, lang_id))
+            except usb.core.USBError:
+                pass
+
+        return descriptors
+
+
 
 class Endpoint(usb.core.Endpoint):
 
@@ -100,3 +120,8 @@ class Endpoint(usb.core.Endpoint):
     @property
     def type_direction(self):
         return self._str()
+
+
+
+class Descriptor:
+    pass

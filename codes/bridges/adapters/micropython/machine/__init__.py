@@ -8,6 +8,7 @@ class Pin(I_machine.Pin):
 
     def __init__(self, id, mode = I_machine.Pin.IN, pull = None, value = None,
                  drive = None, alt = None,
+                 invert = False,
                  gpio_port = None):
 
         self._gpio_port = gpio_port
@@ -24,6 +25,7 @@ class Pin(I_machine.Pin):
         self._pull = pull
         self._drive = drive
         self._alt = alt
+        self._invert = invert
 
         self.init(mode, value)
 
@@ -32,7 +34,8 @@ class Pin(I_machine.Pin):
         self._gpio_port = None
 
 
-    def init(self, mode = None, value = None):
+    def init(self, mode = None, value = None, invert = False):
+        self._invert = invert
         self.mode(mode)
         if self.mode() == self.OUT:
             self.value(I_machine.Pin.LOW if value is None else value)
@@ -57,6 +60,14 @@ class Pin(I_machine.Pin):
 
     def low(self):
         self.value(I_machine.Pin.LOW)
+
+
+    def on(self):
+        self.low() if self._invert else self.high()
+
+
+    def off(self):
+        self.high() if self._invert else self.low()
 
 
     def toggle(self):
@@ -93,17 +104,28 @@ class Pin(I_machine.Pin):
 
 
 
-class PinDumy(I_machine.Pin):
+class Signal(Pin):
+    """
+    Inherit from Pin
+    """
+
+
+
+class PinDummy(Pin):
 
     def __init__(self):
         pass
 
 
-    def init(self, mode = None, value = None):
+    def __del__(self):
         pass
 
 
     def value(self, value = None):
+        pass
+
+
+    def mode(self, mode = None):
         pass
 
 

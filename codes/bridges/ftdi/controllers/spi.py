@@ -86,6 +86,7 @@ class SpiGpioPort(pyftdi.spi.SpiGpioPort):
     def __init__(self, controller):
         super().__init__(controller)
         self._prepare_lookup_table()
+        self.Signal = self.Pin
 
 
     def __del__(self):
@@ -166,14 +167,15 @@ class SpiGpioPort(pyftdi.spi.SpiGpioPort):
     def Pin(self, id,
             mode = machine.Pin.IN, pull = None,
             value = None,
-            drive = None, alt = None):
+            drive = None, alt = None,
+            invert = False):
 
         assert id in self.addressable_pins.keys() or \
                id in self.addressable_pins.values(), \
             'Invalid pin: {}.\n Addressable pins: {}'.format(id, self.addressable_pins)
-        return machine.Pin(id, mode, pull, value, drive, alt, gpio_port = self)
+
+        return machine.Pin(id, mode, pull, value, drive, alt, invert, gpio_port = self)
 
 
     def PinDummy(self):
-
         return machine.PinDummy()

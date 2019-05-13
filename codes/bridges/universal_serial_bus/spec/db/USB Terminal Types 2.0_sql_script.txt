@@ -1,0 +1,189 @@
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS usb_terminal_types;
+CREATE TABLE usb_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO usb_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('USB Undefined', '0100','I/O', 'USB Terminal, undefined Type.'),
+('USB streaming', '0101','I/O', 'A Terminal dealing with a signal carried over an endpoint in an AudioStreaming interface. The AudioStreaming interface descriptor points to the associated Terminal through the bTerminalLink field.'),
+('USB vendor specific', '01FF','I/O', 'A Terminal dealing with a signal carried over a vendor-specific interface. The vendor-specific interface descriptor must contain a field that references the Terminal.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS input_terminal_types;
+CREATE TABLE input_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO input_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('Input Undefined', '0200','I', 'Input Terminal, undefined Type.'),
+('Microphone', '0201','I', 'A generic microphone that does not fit under any of the other classifications.'),
+('Desktop microphone', '0202','I', 'A microphone normally placed on the desktop or integrated into the monitor.'),
+('Personal microphone', '0203','I', 'A head-mounted or clip-on microphone.'),
+('Omni-directional microphone', '0204','I', 'A microphone designed to pick up voice from more than one speaker at relatively long ranges.'),
+('Microphone array', '0205','I', 'An array of microphones designed for directional processing using host-based signal processing algorithms.'),
+('Processing microphone array', '0206','I', 'An array of microphones with an embedded signal processor.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS output_terminal_types;
+CREATE TABLE output_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO output_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('Output Undefined', '0300','O', 'Output Terminal, undefined Type.'),
+('Speaker', '0301','O', 'A generic speaker or set of speakers that does not fit under any of the other classifications.'),
+('Headphones', '0302','O', 'A head-mounted audio output device.'),
+('Head Mounted Display Audio', '0303','O', 'The audio part of a VR head mounted display. The Associated Interfaces descriptor can be used to reference the HID interface used to report the position and orientation of the HMD.'),
+('Desktop speaker', '0304','O', 'Relatively small speaker or set of speakers normally placed on the desktop or integrated into the monitor. These speakers are close to the user and have limited stereo separation.'),
+('Room speaker', '0305','O', 'Larger speaker or set of speakers that are heard well anywhere in the room.'),
+('Communication speaker', '0306','O', 'Speaker or set of speakers designed for voice communication.'),
+('Low frequency effects speaker', '0307','O', 'Speaker designed for low frequencies (subwoofer). Not capable of reproducing speech or music.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS bi_directional_terminal_types;
+CREATE TABLE bi_directional_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO bi_directional_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('Bi-directional Undefined', '0400','I/O', 'Bi-directional Terminal, undefined Type.'),
+('Handset', '0401','I/O', 'Hand-held bi-directional audio device.'),
+('Headset', '0402','I/O', 'Head-mounted bi-directional audio device.'),
+('Speakerphone, no echo reduction', '0403','I/O', 'A hands-free audio device designed for host-based echo cancellation.'),
+('Echo-suppressing speakerphone', '0404','I/O', 'A hands-free audio device with echo suppression capable of half-duplex operation.'),
+('Echo-canceling speakerphone', '0405','I/O', 'A hands-free audio device with echo cancellation capable of full-duplex operation.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS telephony_terminal_types;
+CREATE TABLE telephony_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO telephony_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('Telephony Undefined', '0500','I/O', 'Telephony Terminal, undefined Type.'),
+('Phone line', '0501','I/O', 'May be an analog telephone line jack, an ISDN line, a proprietary PBX interface, or a wireless link.'),
+('Telephone', '0502','I/O', 'Device can be used as a telephone. When not in use as a telephone, handset is used as a bi-directional audio device.'),
+('Down Line Phone', '0503','I/O', 'A standard telephone set connected to the device. When not in use as a telephone, it can be used as a bi-directional audio device.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS external_terminal_types;
+CREATE TABLE external_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO external_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('External Undefined', '0600','I/O', 'External Terminal, undefined Type.'),
+('Analog connector', '0601','I/O', 'A generic analog connector.'),
+('Digital audio interface', '0602','I/O', 'A generic digital audio interface.'),
+('Line connector', '0603','I/O', 'An analog connector at standard line levels. Usually uses 3.5mm.'),
+('Legacy audio connector', '0604','I/O', 'An input connector assumed to be connected to the lineout of the legacy audio system of the host computer. Used for backward compatibility.'),
+('S/PDIF interface', '0605','I/O', 'An S/PDIF digital audio interface. The Associated Interface descriptor can be used to reference an interface used for controlling special functions of this interface.'),
+('1394 DA stream', '0606','I/O', 'An interface to audio streams on a 1394 bus.'),
+('1394 DV stream soundtrack', '0607','I/O', 'An interface to soundtrack of A/V stream on a 1394 bus.'),
+('ADAT Lightpipe', '0608','I/O', 'An optical connection carrying the Alesis Digital Audio Tape stream. Contact Alesis for technical information.'),
+('TDIF', '0609','I/O', 'Tascam Digital Interface. Contact Tascam for technical information.'),
+('MADI', '060A','I/O', 'Multi-channel Audio Digital Interface as defined by AES.');
+
+--------------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS embedded_terminal_types;
+CREATE TABLE embedded_terminal_types (
+    id INTEGER PRIMARY KEY,
+    terminal_type VARCHAR,
+    code VARCHAR,
+    i_o VARCHAR,
+    description VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO embedded_terminal_types (
+    terminal_type,
+    code,
+    i_o,
+    description)
+Values
+
+('Embedded Undefined', '0700','I/O', 'Embedded Terminal, undefined Type.'),
+('Level Calibration Noise Source', '0701','O', 'Internal Noise source for level calibration (MPEG decoding, Dolby Prologic?, AC-3 etc.)'),
+('Equalization Noise', '0702','O', 'Internal Noise source for measurements.'),
+('CD player', '0703','I', 'Audio compact disc player or CD-ROM capable of audio playback.'),
+('DAT', '0704','I/O', 'Digital Audio Tape.'),
+('DCC', '0705','I/O', 'Digital Compact Cassette.'),
+('Compressed Audio Player', '0706','I/O', 'Compressed Audio player.'),
+('Analog Tape', '0707','I/O', 'Analog Audio Tape.'),
+('Phonograph', '0708','I', 'Analog vinyl record player.'),
+('VCR Audio', '0709','I', 'Audio track of VCR.'),
+('Video Disc Audio', '070A','I', 'Audio track of VideoDisc player.'),
+('DVD Audio', '070B','I', 'Audio track of DVD player.'),
+('TV Tuner Audio', '070C','I', 'Audio track of TV tuner.'),
+('Satellite Receiver Audio', '070D','I', 'Audio track of satellite receiver.'),
+('Cable Tuner Audio', '070E','I', 'Audio track of cable tuner.'),
+('DSS Audio', '070F','I', 'Audio track of DSS receiver.'),
+('Radio Receiver', '0710','I', 'AM/FM radio receiver.'),
+('Radio Transmitter', '0711','O', 'AM/FM radio transmitter.'),
+('Multi-track Recorder', '0712','I/O', 'A multi-track recording system.'),
+('Synthesizer', '0713','I/O', 'Synthesizer.'),
+('Piano', '0714','I/O', 'Piano'),
+('Guitar', '0715','I/O', 'Guitar'),
+('Drums/Rhythm', '0716','I/O', 'Percussion Instrument'),
+('Other Musical Instrument', '0717','I/O', 'Undefined Musical Instrument');
+

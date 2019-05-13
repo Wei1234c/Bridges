@@ -1,0 +1,125 @@
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_device_descriptor;
+CREATE TABLE standard_device_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    bcdUSB VARCHAR,
+    bDeviceClass VARCHAR,
+    bDeviceSubClass VARCHAR,
+    bDeviceProtocol VARCHAR,
+    bMaxPacketSize0 VARCHAR,
+    idVendor VARCHAR,
+    idProduct VARCHAR,
+    bcdDevice VARCHAR,
+    iManufacturer VARCHAR,
+    iProduct VARCHAR,
+    iSerialNumber VARCHAR,
+    bNumConfigurations VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS device_qualifier_descriptor;
+CREATE TABLE device_qualifier_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    bcdUSB VARCHAR,
+    bDeviceClass VARCHAR,
+    bDeviceSubClass VARCHAR,
+    bDeviceProtocol VARCHAR,
+    bMaxPacketSize0 VARCHAR,
+    bNumConfigurations VARCHAR,
+    bReserved VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_configuration_descriptor;
+CREATE TABLE standard_configuration_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    wTotalLength VARCHAR,
+    bNumInterfaces VARCHAR,
+    bConfigurationValue VARCHAR,
+    iConfiguration VARCHAR,
+    bmAttributes VARCHAR,
+    bMaxPower VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS other_speed_configuration_descriptor;
+CREATE TABLE other_speed_configuration_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    wTotalLength VARCHAR,
+    bNumInterfaces VARCHAR,
+    bConfigurationValue VARCHAR,
+    iConfiguration VARCHAR,
+    bmAttributes VARCHAR,
+    bMaxPower VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_interface_descriptor;
+CREATE TABLE standard_interface_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    bInterfaceNumber VARCHAR,
+    bAlternateSetting VARCHAR,
+    bNumEndpoints VARCHAR,
+    bInterfaceClass VARCHAR,
+    bInterfaceSubClass VARCHAR,
+    bInterfaceProtocol VARCHAR,
+    iInterface VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_endpoint_descriptor;
+CREATE TABLE standard_endpoint_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    bEndpointAddress VARCHAR,
+    bmAttributes VARCHAR,
+    wMaxPacketSize VARCHAR,
+    bInterval VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS string_descriptor_zero;
+CREATE TABLE string_descriptor_zero (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    wLANGID_0_ VARCHAR,
+    wLANGID_x_ VARCHAR);
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS unicode_string_descriptor;
+CREATE TABLE unicode_string_descriptor (
+    id INTEGER PRIMARY KEY,
+    bLength VARCHAR,
+    bDescriptorType VARCHAR,
+    bString VARCHAR);
+PRAGMA foreign_keys = on;
+
+

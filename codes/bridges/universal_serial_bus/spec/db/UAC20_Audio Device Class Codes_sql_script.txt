@@ -1,0 +1,728 @@
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_function_class_code;
+CREATE TABLE audio_function_class_code (
+    id INTEGER PRIMARY KEY,
+    audio_function_class_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_function_class_code (
+    audio_function_class_code,
+    value)
+Values
+
+('AUDIO_FUNCTION', '01');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_function_subclass_codes;
+CREATE TABLE audio_function_subclass_codes (
+    id INTEGER PRIMARY KEY,
+    audio_function_subclass_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_function_subclass_codes (
+    audio_function_subclass_code,
+    value)
+Values
+
+('FUNCTION_SUBCLASS_UNDEFINED', '00');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_function_protocol_codes;
+CREATE TABLE audio_function_protocol_codes (
+    id INTEGER PRIMARY KEY,
+    audio_function_protocol_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_function_protocol_codes (
+    audio_function_protocol_code,
+    value)
+Values
+
+('FUNCTION_PROTOCOL_UNDEFINED', '00'),
+('AF_VERSION_02_00', '20');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_interface_class_code;
+CREATE TABLE audio_interface_class_code (
+    id INTEGER PRIMARY KEY,
+    audio_interface_class_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_interface_class_code (
+    audio_interface_class_code,
+    value)
+Values
+
+('AUDIO', '01');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_interface_subclass_codes;
+CREATE TABLE audio_interface_subclass_codes (
+    id INTEGER PRIMARY KEY,
+    audio_interface_subclass_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_interface_subclass_codes (
+    audio_interface_subclass_code,
+    value)
+Values
+
+('INTERFACE_SUBCLASS_UNDEFINED', '00'),
+('AUDIOCONTROL', '01'),
+('AUDIOSTREAMING', '02'),
+('MIDISTREAMING', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_interface_protocol_codes;
+CREATE TABLE audio_interface_protocol_codes (
+    id INTEGER PRIMARY KEY,
+    audio_interface_protocol_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_interface_protocol_codes (
+    audio_interface_protocol_code,
+    value)
+Values
+
+('INTERFACE_PROTOCOL_UNDEFINED', '00'),
+('IP_VERSION_02_00', '20');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_function_category_codes;
+CREATE TABLE audio_function_category_codes (
+    id INTEGER PRIMARY KEY,
+    audio_function_subclass_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_function_category_codes (
+    audio_function_subclass_code,
+    value)
+Values
+
+('FUNCTION_SUBCLASS_UNDEFINED', '00'),
+('DESKTOP_SPEAKER', '01'),
+('HOME_THEATER', '02'),
+('MICROPHONE', '03'),
+('HEADSET', '04'),
+('TELEPHONE', '05'),
+('CONVERTER', '06'),
+('VOICE/SOUND_RECORDER', '07'),
+('I/O_BOX', '08'),
+('MUSICAL_INSTRUMENT', '09'),
+('PRO-AUDIO', '0A'),
+('AUDIO/VIDEO', '0B'),
+('CONTROL_PANEL', '0C'),
+('OTHER', 'FF');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_class_specific_descriptor_types;
+CREATE TABLE audio_class_specific_descriptor_types (
+    id INTEGER PRIMARY KEY,
+    descriptor_type VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_class_specific_descriptor_types (
+    descriptor_type,
+    value)
+Values
+
+('CS_UNDEFINED', '20'),
+('CS_DEVICE', '21'),
+('CS_CONFIGURATION', '22'),
+('CS_STRING', '23'),
+('CS_INTERFACE', '24'),
+('CS_ENDPOINT', '25');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_class_specific_ac_interface_descriptor_subtypes;
+CREATE TABLE audio_class_specific_ac_interface_descriptor_subtypes (
+    id INTEGER PRIMARY KEY,
+    descriptor_subtype VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_class_specific_ac_interface_descriptor_subtypes (
+    descriptor_subtype,
+    value)
+Values
+
+('AC_DESCRIPTOR_UNDEFINED', '00'),
+('HEADER', '01'),
+('INPUT_TERMINAL', '02'),
+('OUTPUT_TERMINAL', '03'),
+('MIXER_UNIT', '04'),
+('SELECTOR_UNIT', '05'),
+('FEATURE_UNIT', '06'),
+('EFFECT_UNIT', '07'),
+('PROCESSING_UNIT', '08'),
+('EXTENSION_UNIT', '09'),
+('CLOCK_SOURCE', '0A'),
+('CLOCK_SELECTOR', '0B'),
+('CLOCK_MULTIPLIER', '0C'),
+('SAMPLE_RATE_CONVERTER', '0D');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_class_specific_as_interface_descriptor_subtypes;
+CREATE TABLE audio_class_specific_as_interface_descriptor_subtypes (
+    id INTEGER PRIMARY KEY,
+    descriptor_subtype VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_class_specific_as_interface_descriptor_subtypes (
+    descriptor_subtype,
+    value)
+Values
+
+('AS_DESCRIPTOR_UNDEFINED', '00'),
+('AS_GENERAL', '01'),
+('FORMAT_TYPE', '02'),
+('ENCODER', '03'),
+('DECODER', '04');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS effect_unit_effect_types;
+CREATE TABLE effect_unit_effect_types (
+    id INTEGER PRIMARY KEY,
+    weffecttype VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO effect_unit_effect_types (
+    weffecttype,
+    value)
+Values
+
+('EFFECT_UNDEFINED', '00'),
+('PARAM_EQ_SECTION_EFFECT', '01'),
+('REVERBERATION_EFFECT', '02'),
+('MOD_DELAY_EFFECT', '03'),
+('DYN_RANGE_COMP_EFFECT', '04');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS processing_unit_process_types;
+CREATE TABLE processing_unit_process_types (
+    id INTEGER PRIMARY KEY,
+    wprocesstype VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO processing_unit_process_types (
+    wprocesstype,
+    value)
+Values
+
+('PROCESS_UNDEFINED', '00'),
+('UP/DOWNMIX_PROCESS', '01'),
+('DOLBY_PROLOGIC_PROCESS', '02'),
+('STEREO_EXTENDER_PROCESS', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_class_specific_endpoint_descriptor_subtypes;
+CREATE TABLE audio_class_specific_endpoint_descriptor_subtypes (
+    id INTEGER PRIMARY KEY,
+    descriptor_subtype VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_class_specific_endpoint_descriptor_subtypes (
+    descriptor_subtype,
+    value)
+Values
+
+('DESCRIPTOR_UNDEFINED', '00'),
+('EP_GENERAL', '01');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_class_specific_request_codes;
+CREATE TABLE audio_class_specific_request_codes (
+    id INTEGER PRIMARY KEY,
+    class_specific_request_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_class_specific_request_codes (
+    class_specific_request_code,
+    value)
+Values
+
+('REQUEST_CODE_UNDEFINED', '00'),
+('CUR', '01'),
+('RANGE', '02'),
+('MEM', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS encoder_type_codes;
+CREATE TABLE encoder_type_codes (
+    id INTEGER PRIMARY KEY,
+    encoder_type_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO encoder_type_codes (
+    encoder_type_code,
+    value)
+Values
+
+('ENCODER_UNDEFINED', '00'),
+('OTHER_ENCODER', '01'),
+('MPEG_ENCODER', '02'),
+('AC-3_ENCODER', '03'),
+('WMA_ENCODER', '04'),
+('DTS_ENCODER', '05');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS decoder_type_codes;
+CREATE TABLE decoder_type_codes (
+    id INTEGER PRIMARY KEY,
+    decoder_type_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO decoder_type_codes (
+    decoder_type_code,
+    value)
+Values
+
+('DECODER_UNDEFINED', '00'),
+('OTHER_DECODER', '01'),
+('MPEG_DECODER', '02'),
+('AC-3_DECODER', '03'),
+('WMA_DECODER', '04'),
+('DTS_DECODER', '05');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_source_control_selectors;
+CREATE TABLE clock_source_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO clock_source_control_selectors (
+    control_selector,
+    value)
+Values
+
+('CS_CONTROL_UNDEFINED', '00'),
+('CS_SAM_FREQ_CONTROL', '01'),
+('CS_CLOCK_VALID_CONTROL', '02');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_selector_control_selectors;
+CREATE TABLE clock_selector_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO clock_selector_control_selectors (
+    control_selector,
+    value)
+Values
+
+('CX_CONTROL_UNDEFINED', '00'),
+('CX_CLOCK_SELECTOR_CONTROL', '01');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_multiplier_control_selectors;
+CREATE TABLE clock_multiplier_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO clock_multiplier_control_selectors (
+    control_selector,
+    value)
+Values
+
+('CM_CONTROL_UNDEFINED', '00'),
+('CM_NUMERATOR_CONTROL', '01'),
+('CM_DENOMINATOR_CONTROL', '02');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS terminal_control_selectors;
+CREATE TABLE terminal_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO terminal_control_selectors (
+    control_selector,
+    value)
+Values
+
+('TE_CONTROL_UNDEFINED', '00'),
+('TE_COPY_PROTECT_CONTROL', '01'),
+('TE_CONNECTOR_CONTROL', '02'),
+('TE_OVERLOAD_CONTROL', '03'),
+('TE_CLUSTER_CONTROL', '04'),
+('TE_UNDERFLOW_CONTROL', '05'),
+('TE_OVERFLOW_CONTROL', '06'),
+('TE_LATENCY_CONTROL', '07');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mixer_control_selectors;
+CREATE TABLE mixer_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO mixer_control_selectors (
+    control_selector,
+    value)
+Values
+
+('MU_CONTROL_UNDEFINED', '00'),
+('MU_MIXER_CONTROL', '01'),
+('MU_CLUSTER_CONTROL', '02'),
+('MU_UNDERFLOW_CONTROL', '03'),
+('MU_OVERFLOW_CONTROL', '04'),
+('MU_LATENCY_CONTROL', '05');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS selector_control_selectors;
+CREATE TABLE selector_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO selector_control_selectors (
+    control_selector,
+    value)
+Values
+
+('SU_CONTROL_UNDEFINED', '00'),
+('SU_SELECTOR_CONTROL', '01'),
+('SU_LATENCY_CONTROL', '02');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS feature_unit_control_selectors;
+CREATE TABLE feature_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO feature_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('FU_CONTROL_UNDEFINED', '00'),
+('FU_MUTE_CONTROL', '01'),
+('FU_VOLUME_CONTROL', '02'),
+('FU_BASS_CONTROL', '03'),
+('FU_MID_CONTROL', '04'),
+('FU_TREBLE_CONTROL', '05'),
+('FU_GRAPHIC_EQUALIZER_CONTROL', '06'),
+('FU_AUTOMATIC_GAIN_CONTROL', '07'),
+('FU_DELAY_CONTROL', '08'),
+('FU_BASS_BOOST_CONTROL', '09'),
+('FU_LOUDNESS_CONTROL', '0A'),
+('FU_INPUT_GAIN_CONTROL', '0B'),
+('FU_INPUT_GAIN_PAD_CONTROL', '0C'),
+('FU_PHASE_INVERTER_CONTROL', '0D'),
+('FU_UNDERFLOW_CONTROL', '0E'),
+('FU_OVERFLOW_CONTROL', '0F'),
+('FU_LATENCY_CONTROL', '10');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS reverberation_effect_unit_control_selectors;
+CREATE TABLE reverberation_effect_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO reverberation_effect_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('PE_CONTROL_UNDEFINED', '00'),
+('PE_ENABLE_CONTROL', '01'),
+('PE_CENTERFREQ_CONTROL', '02'),
+('PE_QFACTOR_CONTROL', '03'),
+('PE_GAIN_CONTROL', '04'),
+('PE_UNDERFLOW_CONTROL', '05'),
+('PE_OVERFLOW_CONTROL', '06'),
+('PE_LATENCY_CONTROL', '07');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS reverberation_effect_unit_control_selectors;
+CREATE TABLE reverberation_effect_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO reverberation_effect_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('RV_CONTROL_UNDEFINED', '00'),
+('RV_ENABLE_CONTROL', '01'),
+('RV_TYPE_CONTROL', '02'),
+('RV_LEVEL_CONTROL', '03'),
+('RV_TIME_CONTROL', '04'),
+('RV_FEEDBACK_CONTROL', '05'),
+('RV_PREDELAY_CONTROL', '06'),
+('RV_DENSITY_CONTROL', '07'),
+('RV_HIFREQ_ROLLOFF_CONTROL', '08'),
+('RV_UNDERFLOW_CONTROL', '09'),
+('RV_OVERFLOW_CONTROL', '0A'),
+('RV_LATENCY_CONTROL', '0B');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS modulation_delay_effect_unit_control_selectors;
+CREATE TABLE modulation_delay_effect_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO modulation_delay_effect_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('MD_CONTROL_UNDEFINED', '00'),
+('MD_ENABLE_CONTROL', '01'),
+('MD_BALANCE_CONTROL', '02'),
+('MD_RATE_CONTROL', '03'),
+('MD_DEPTH_CONTROL', '04'),
+('MD_TIME_CONTROL', '05'),
+('MD_FEEDBACK_CONTROL', '06'),
+('MD_UNDERFLOW_CONTROL', '07'),
+('MD_OVERFLOW_CONTROL', '08'),
+('MD_LATENCY_CONTROL', '09');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dynamic_range_compressor_effect_unit_control_selectors;
+CREATE TABLE dynamic_range_compressor_effect_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO dynamic_range_compressor_effect_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('DR_CONTROL_UNDEFINED', '00'),
+('DR_ENABLE_CONTROL', '01'),
+('DR_COMPRESSION_RATE_CONTROL', '02'),
+('DR_MAXAMPL_CONTROL', '03'),
+('DR_THRESHOLD_CONTROL', '04'),
+('DR_ATTACK_TIME_CONTROL', '05'),
+('DR_RELEASE_TIME_CONTROL', '06'),
+('DR_UNDERFLOW_CONTROL', '07'),
+('DR_OVERFLOW_CONTROL', '08'),
+('DR_LATENCY_CONTROL', '09');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS up_down_mix_processing_unit_control_selectors;
+CREATE TABLE up_down_mix_processing_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO up_down_mix_processing_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('UD_CONTROL_UNDEFINED', '00'),
+('UD_ENABLE_CONTROL', '01'),
+('UD_MODE_SELECT_CONTROL', '02'),
+('UD_CLUSTER_CONTROL', '03'),
+('UD_UNDERFLOW_CONTROL', '04'),
+('UD_OVERFLOW_CONTROL', '05'),
+('UD_LATENCY_CONTROL', '06');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dolby_prologic_processing_unit_control_selectors;
+CREATE TABLE dolby_prologic_processing_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO dolby_prologic_processing_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('DP_CONTROL_UNDEFINED', '00'),
+('DP_ENABLE_CONTROL', '01'),
+('DP_MODE_SELECT_CONTROL', '02'),
+('DP_CLUSTER_CONTROL', '03'),
+('DP_UNDERFLOW_CONTROL', '04'),
+('DP_OVERFLOW_CONTROL', '05'),
+('DP_LATENCY_CONTROL', '06');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS stereo_extender_processing_unit_control_selectors;
+CREATE TABLE stereo_extender_processing_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO stereo_extender_processing_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('ST_EXT_CONTROL_UNDEFINED', '00'),
+('ST_EXT_ENABLE_CONTROL', '01'),
+('ST_EXT_WIDTH_CONTROL', '02'),
+('ST_EXT_UNDERFLOW_CONTROL', '03'),
+('ST_EXT_OVERFLOW_CONTROL', '04'),
+('ST_EXT_LATENCY_CONTROL', '05');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS extension_unit_control_selectors;
+CREATE TABLE extension_unit_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO extension_unit_control_selectors (
+    control_selector,
+    value)
+Values
+
+('XU_CONTROL_UNDEFINED', '00'),
+('XU_ENABLE_CONTROL', '01'),
+('XU_CLUSTER_CONTROL', '02'),
+('XU_UNDERFLOW_CONTROL', '03'),
+('XU_OVERFLOW_CONTROL', '04'),
+('XU_LATENCY_CONTROL', '05');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audiostreaming_interface_control_selectors;
+CREATE TABLE audiostreaming_interface_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audiostreaming_interface_control_selectors (
+    control_selector,
+    value)
+Values
+
+('AS_CONTROL_UNDEFINED', '00'),
+('AS_ACT_ALT_SETTING_CONTROL', '01'),
+('AS_VAL_ALT_SETTINGS_CONTROL', '02'),
+('AS_AUDIO_DATA_FORMAT_CONTROL', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS encoder_control_selectors;
+CREATE TABLE encoder_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO encoder_control_selectors (
+    control_selector,
+    value)
+Values
+
+('EN_CONTROL_UNDEFINED', '00'),
+('EN_BIT_RATE_CONTROL', '01'),
+('EN_QUALITY_CONTROL', '02'),
+('EN_VBR_CONTROL', '03'),
+('EN_TYPE_CONTROL', '04'),
+('EN_UNDERFLOW_CONTROL', '05'),
+('EN_OVERFLOW_CONTROL', '06'),
+('EN_ENCODER_ERROR_CONTROL', '07'),
+('EN_PARAM1_CONTROL', '08'),
+('EN_PARAM2_CONTROL', '09'),
+('EN_PARAM3_CONTROL', '0A'),
+('EN_PARAM4_CONTROL', '0B'),
+('EN_PARAM5_CONTROL', '0C'),
+('EN_PARAM6_CONTROL', '0D'),
+('EN_PARAM7_CONTROL', '0E'),
+('EN_PARAM8_CONTROL', '0F');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mpeg_decoder_control_selectors;
+CREATE TABLE mpeg_decoder_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO mpeg_decoder_control_selectors (
+    control_selector,
+    value)
+Values
+
+('MD_CONTROL_UNDEFINED', '00'),
+('MD_DUAL_CHANNEL_CONTROL', '01'),
+('MD_SECOND_STEREO_CONTROL', '02'),
+('MD_MULTILINGUAL_CONTROL', '03'),
+('MD_DYN_RANGE_CONTROL', '04'),
+('MD_SCALING_CONTROL', '05'),
+('MD_HILO_SCALING_CONTROL', '06'),
+('MD_UNDERFLOW_CONTROL', '07'),
+('MD_OVERFLOW_CONTROL', '08'),
+('MD_DECODER_ERROR_CONTROL', '09');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS ac_3_decoder_control_selectors;
+CREATE TABLE ac_3_decoder_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO ac_3_decoder_control_selectors (
+    control_selector,
+    value)
+Values
+
+('AD_CONTROL_UNDEFINED', '00'),
+('AD_MODE_CONTROL', '01'),
+('AD_DYN_RANGE_CONTROL', '02'),
+('AD_SCALING_CONTROL', '03'),
+('AD_HILO_SCALING_CONTROL', '04'),
+('AD_UNDERFLOW_CONTROL', '05'),
+('AD_OVERFLOW_CONTROL', '06'),
+('AD_DECODER_ERROR_CONTROL', '07');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS wma_decoder_control_selectors;
+CREATE TABLE wma_decoder_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO wma_decoder_control_selectors (
+    control_selector,
+    value)
+Values
+
+('WD_CONTROL_UNDEFINED', '00'),
+('WD_UNDERFLOW_CONTROL', '01'),
+('WD_OVERFLOW_CONTROL', '02'),
+('WD_DECODER_ERROR_CONTROL', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dts_decoder_control_selectors;
+CREATE TABLE dts_decoder_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO dts_decoder_control_selectors (
+    control_selector,
+    value)
+Values
+
+('DD_CONTROL_UNDEFINED', '00'),
+('DD_UNDERFLOW_CONTROL', '01'),
+('DD_OVERFLOW_CONTROL', '02'),
+('DD_DECODER_ERROR_CONTROL', '03');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS endpoint_control_selectors;
+CREATE TABLE endpoint_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO endpoint_control_selectors (
+    control_selector,
+    value)
+Values
+
+('EP_CONTROL_UNDEFINED', '00'),
+('EP_PITCH_CONTROL', '01'),
+('EP_DATA_OVERRUN_CONTROL', '02'),
+('EP_DATA_UNDERRUN_CONTROL', '03');

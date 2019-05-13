@@ -1,0 +1,138 @@
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS format_type_codes;
+CREATE TABLE format_type_codes (
+    id INTEGER PRIMARY KEY,
+    format_type_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO format_type_codes (
+    format_type_code,
+    value)
+Values
+
+('FORMAT_TYPE_UNDEFINED', '00'),
+('FORMAT_TYPE_I', '01'),
+('FORMAT_TYPE_II', '02'),
+('FORMAT_TYPE_III', '03'),
+('FORMAT_TYPE_IV', '04'),
+('EXT_FORMAT_TYPE_I', '81'),
+('EXT_FORMAT_TYPE_II', '82'),
+('EXT_FORMAT_TYPE_III', '83');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_i_bit_allocations;
+CREATE TABLE audio_data_format_type_i_bit_allocations (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    bmformats VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_i_bit_allocations (
+    name,
+    bmformats)
+Values
+
+('PCM', 'D0'),
+('PCM8', 'D1'),
+('IEEE_FLOAT', 'D2'),
+('ALAW', 'D3'),
+('MULAW', 'D4'),
+('Reserved. Must be set to 0.', 'D30..D5'),
+('TYPE_I_RAW_DATA', 'D31');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_ii_bit_allocations;
+CREATE TABLE audio_data_format_type_ii_bit_allocations (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    bmformats VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_ii_bit_allocations (
+    name,
+    bmformats)
+Values
+
+('MPEG', 'D0'),
+('AC-3', 'D1'),
+('WMA', 'D2'),
+('DTS', 'D3'),
+('Reserved. Must be set to 0.', 'D30..D4'),
+('TYPE_II_RAW_DATA', 'D31');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_iii_bit_allocations;
+CREATE TABLE audio_data_format_type_iii_bit_allocations (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    bmformats VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_iii_bit_allocations (
+    name,
+    bmformats)
+Values
+
+('IEC61937_AC-3', 'D0'),
+('IEC61937_MPEG-1_Layer1', 'D1'),
+('IEC61937_MPEG-1_Layer2/3 or IEC61937_MPEG-2_NOEXT', 'D2'),
+('IEC61937_MPEG-2_EXT', 'D3'),
+('IEC61937_MPEG-2_AAC_ADTS', 'D4'),
+('IEC61937_MPEG-2_Layer1_LS', 'D5'),
+('IEC61937_MPEG-2_Layer2/3_LS', 'D6'),
+('IEC61937_DTS-I', 'D7'),
+('IEC61937_DTS-II', 'D8'),
+('IEC61937_DTS-III', 'D9'),
+('IEC61937_ATRAC', 'D10'),
+('IEC61937_ATRAC2/3', 'D11'),
+('TYPE_III_WMA', 'D12'),
+('Reserved. Must be set to 0.', 'D31..D13');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_iv_bit_allocations;
+CREATE TABLE audio_data_format_type_iv_bit_allocations (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    bmformats VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_iv_bit_allocations (
+    name,
+    bmformats)
+Values
+
+('PCM', 'D0'),
+('PCM8', 'D1'),
+('IEEE_FLOAT', 'D2'),
+('ALAW', 'D3'),
+('MULAW', 'D4'),
+('MPEG', 'D5'),
+('AC-3', 'D6'),
+('WMA', 'D7'),
+('IEC61937_AC-3', 'D8'),
+('IEC61937_MPEG-1_Layer1', 'D9'),
+('IEC61937_MPEG-1_Layer2/3 or IEC61937_MPEG-2_NOEXT', 'D10'),
+('IEC61937_MPEG-2_EXT', 'D11'),
+('IEC61937_MPEG-2_AAC_ADTS', 'D12'),
+('IEC61937_MPEG-2_Layer1_LS', 'D13'),
+('IEC61937_MPEG-2_Layer2/3_LS', 'D14'),
+('IEC61937_DTS-I', 'D15'),
+('IEC61937_DTS-II', 'D16'),
+('IEC61937_DTS-III', 'D17'),
+('IEC61937_ATRAC', 'D18'),
+('IEC61937_ATRAC2/3', 'D19'),
+('TYPE_III_WMA', 'D20'),
+('IEC60958_PCM', 'D21'),
+('Reserved. Must be set to 0.', 'D31..D22');
+
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS side_band_protocol_codes;
+CREATE TABLE side_band_protocol_codes (
+    id INTEGER PRIMARY KEY,
+    protocol_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO side_band_protocol_codes (
+    protocol_code,
+    value)
+Values
+
+('PROTOCOL_UNDEFINED', '00'),
+('PRES_TIMESTAMP_PROTOCOL', '01');
+

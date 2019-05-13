@@ -13,7 +13,14 @@ class Pin(machine.Pin):
 
 
 
-class PinDummy(machine.Pin):
+class Signal(machine.Signal):
+    """
+    Inherit from Pin
+    """
+
+
+
+class PinDummy(machine.PinDummy):
     """
     Inherit from adapter framework
     """
