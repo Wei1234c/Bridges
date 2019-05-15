@@ -1,6 +1,6 @@
 import struct
 
-from bridges.universal_serial_bus import *
+from universal_serial_bus import *
 
 
 CH341_PACKET_LENGTH_MAX = 32
