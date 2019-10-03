@@ -23,7 +23,7 @@ Read on if these scenarios suit you:
     - One of my Python projects needs to use a SPI-interfaced device.
     - However, there is no external SPI interface available on the PC, therefore comes the bus-converter.
 - **Bus-Converters selection**:
-    - There are many USB to I2C/SPI/GPIO/UART converters available on the market.[FT232H (1 channel)](www.ftdichip.com/Products/ICs/FT232H.htm) / [FT2232H (2 channels)](https://www.ftdichip.com/Products/ICs/FT2232H.htm) from [FTDI]([https://www.ftdichip.com/) and [CH341](http://www.wch.cn/products/CH341.html) from [WCH](http://www.wch.cn/) ... is popular. FTDI's documentation and development resources are quite complete and relatively easy to develop.
+    - There are many USB to I2C/SPI/GPIO/UART converters available on the market.[FT232H (1 channel)](https://www.ftdichip.com/Products/ICs/FT232H.htm) / [FT2232H (2 channels)](https://www.ftdichip.com/Products/ICs/FT2232H.htm) from [FTDI]([https://www.ftdichip.com/) and [CH341](http://www.wch.cn/products/CH341.html) from [WCH](http://www.wch.cn/) ... is popular. FTDI's documentation and development resources are quite complete and relatively easy to develop.
     - [PyFtdi](http://eblot.github.io/pyftdi/) was chosen to drive FTDI chips, it only depends on [PyUSB](https://github.com/walac/pyusb/blob/master/docs/tutorial.rst). In addition, we nee also...
 - **Drivers for the device**:
     - Besides communicating with devices via I2C/SPI/GPIO/UART, we also need drivers. We need [SSD1306 (Display Panel Control IC) driver](https://github.com/adafruit/Adafruit_SSD1306) to use the OLED display.
