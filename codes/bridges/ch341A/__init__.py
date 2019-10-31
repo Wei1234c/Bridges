@@ -9,9 +9,9 @@ CH341_PACKET_LENGTH_MAX = 32
 
 class CommandStream:
 
-    def __init__(self, commands = [], head = [], tail = []):
+    def __init__(self, commands = tuple(), head = None, tail = tuple()):
         self.init_commands(commands)
-        self._head = head
+        self._head = head or []
         self._tail = tail
 
 
@@ -53,7 +53,7 @@ class CommandStream:
 
 class I2cCommands(CommandStream):
 
-    def __init__(self, commands = []):
+    def __init__(self, commands = tuple()):
         super().__init__(commands = commands,
                          head = [CH341A.PORT.I2C],
                          tail = [CH341A.I2C.COMMAND.END])
@@ -423,7 +423,7 @@ class CH341A(USBdevice):
              iSetDataOut >> 16 & 0x0F, 0, 0, 0])
 
 
-    def set_output2(self, output_pins = [], high_pins = [],
+    def set_output2(self, output_pins = tuple(), high_pins = tuple(),
                     d15_d8_data_enable = True, d15_d8_dirc_enable = True,
                     d7_d0_data_enable = True, d7_d0_dirc_enable = True, d23_d16_data_enable = True):
 
