@@ -214,11 +214,11 @@ class UART:
         raise NotImplementedError()
 
 
-    def read(nbytes):
+    def read(self, nbytes):
         raise NotImplementedError()
 
 
-    def readinto(buf, nbytes = None):
+    def readinto(self, buf, nbytes = None):
         raise NotImplementedError()
 
 
