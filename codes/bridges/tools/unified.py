@@ -157,7 +157,7 @@ class I2C:
         self.i2c = i2c
 
 
-    def readfrom(self, addr, nbytes, stop = True):
+    def readfrom(self, addr, nbytes = 1, stop = True):
         raise NotImplementedError()
 
 
@@ -178,7 +178,7 @@ class I2C:
 
 class I2C_uPy(I2C):
 
-    def readfrom(self, addr, nbytes, stop = True):
+    def readfrom(self, addr, nbytes = 1, stop = True):
         return self.i2c.readfrom(addr, nbytes, stop)
 
 
@@ -189,8 +189,8 @@ class I2C_uPy(I2C):
 
 class I2C_RPi(I2C):
 
-    def readfrom(self, addr, nbytes, stop = True):
-        return array.array('B', [self.i2c.read_byte(addr) for i in range(len(nbytes))])
+    def readfrom(self, addr, nbytes = 1, stop = True):
+        return array.array('B', [self.i2c.read_byte(addr) for i in range(nbytes)])
 
 
     def writeto(self, addr, buf, stop = True):
