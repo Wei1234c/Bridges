@@ -195,3 +195,50 @@ class I2C_RPi(I2C):
 
     def writeto(self, addr, buf, stop = True):
         return sum([self.i2c.write_byte(addr, buf[i]) for i in range(len(buf))])
+
+
+
+class UART:
+
+    def __init__(self, uart):
+        self.uart = uart
+
+
+    def read(self, nbytes = 1):
+        raise NotImplementedError()
+
+
+    def write(self, buf, ):
+        raise NotImplementedError()
+
+
+    @classmethod
+    def from_uPy(cls, uart):
+        return I2C_uPy(uart)
+
+
+    @classmethod
+    def from_RPi(cls, uart):
+        return I2C_RPi(uart)
+
+
+
+class UART_uPy(UART):
+
+    def read(self, nbytes = 1):
+        return self.uart.read(nbytes)
+
+
+    def write(self, buf):
+        return self.uart.write(buf)
+
+
+
+class UART_RPi(UART):
+
+    def read(self, nbytes = 1):
+        return self.uart.read(nbytes)
+
+
+    def write(self, buf):
+        return self.uart.write(buf)

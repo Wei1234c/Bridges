@@ -30,15 +30,6 @@ class SpiController(bridges.ftdi.Controller, pyftdi.spi.SpiController):
         return spi
 
 
-    def get_spidev(self, cs = 0, freq = None, mode = 0):
-        port = self.get_port(cs, freq, mode)  # do validation.
-        spi = spidev.SpiDev(controller = self, cs = cs, spi_mode = mode)
-        spi._cs_epilog = port._cs_epilog
-        spi.set_frequency(port.frequency)
-        self._spi_ports[cs] = spi
-        return spi
-
-
     def SPI(self, id = -1,
             baudrate = 10000000,
             polarity = 0, phase = 0,
@@ -48,8 +39,17 @@ class SpiController(bridges.ftdi.Controller, pyftdi.spi.SpiController):
         return self.get_spi(freq = baudrate, mode = ((polarity << 1) | phase), cs = cs)
 
 
+    def get_spidev(self, cs = 0, freq = None, mode = 0):
+        port = self.get_port(cs, freq, mode)  # do validation.
+        spi = spidev.SpiDev(controller = self, cs = cs, spi_mode = mode)
+        spi._cs_epilog = port._cs_epilog
+        spi.set_frequency(port.frequency)
+        self._spi_ports[cs] = spi
+        return spi
+
+
     def SpiDev(self, bus = None, *args, **kwargs):
-        return self.get_spidev()
+        return self.get_spidev(*args, **kwargs)
 
 
     def get_gpio(self):
@@ -97,7 +97,7 @@ class SpiGpioPort(pyftdi.spi.SpiGpioPort):
         # For PyFtdi, interfaces start @ one, not zero-based.
         # However, for example FT2232H has two interfaces, with USB bInterfaceNumbers start @ zero.
         self.pins_idx = bridges.ftdi.PINS_IDX[(self._controller._ftdi.ic_name,
-                                               self._controller._ftdi.interface.bInterfaceNumber + 1)]
+                                               self._controller._ftdi._interface.bInterfaceNumber + 1)]
         self.pins_names = {idx: name for name, idx in self.pins_idx.items()}
 
 

@@ -9,18 +9,15 @@ DEFAULT_INTERFACE = config.FTDI_DEFAULT_INTERFACE
 PINS_IDX = {('ft232h', 1) : {'ADBUS0': 0, 'ADBUS1': 1, 'ADBUS2': 2, 'ADBUS3': 3, 'ADBUS4': 4, 'ADBUS5': 5, 'ADBUS6': 6,
                              'ADBUS7': 7,
                              'ACBUS0': 8, 'ACBUS1': 9, 'ACBUS2': 10, 'ACBUS3': 11, 'ACBUS4': 12, 'ACBUS5': 13,
-                             'ACBUS6': 14,
-                             'ACBUS7': 15},
+                             'ACBUS6': 14, 'ACBUS7': 15},
             ('ft2232h', 1): {'ADBUS0': 0, 'ADBUS1': 1, 'ADBUS2': 2, 'ADBUS3': 3, 'ADBUS4': 4, 'ADBUS5': 5, 'ADBUS6': 6,
                              'ADBUS7': 7,
                              'ACBUS0': 8, 'ACBUS1': 9, 'ACBUS2': 10, 'ACBUS3': 11, 'ACBUS4': 12, 'ACBUS5': 13,
-                             'ACBUS6': 14,
-                             'ACBUS7': 15},
+                             'ACBUS6': 14, 'ACBUS7': 15},
             ('ft2232h', 2): {'BDBUS0': 0, 'BDBUS1': 1, 'BDBUS2': 2, 'BDBUS3': 3, 'BDBUS4': 4, 'BDBUS5': 5, 'BDBUS6': 6,
                              'BDBUS7': 7,
                              'BCBUS0': 8, 'BCBUS1': 9, 'BCBUS2': 10, 'BCBUS3': 11, 'BCBUS4': 12, 'BCBUS5': 13,
-                             'BCBUS6': 14,
-                             'BCBUS7': 15}}
+                             'BCBUS6': 14, 'BCBUS7': 15}}
 
 
 
@@ -38,10 +35,12 @@ class URL:
 
 
     def string(self, interface = None):
-        interface = self.interface if interface is None else interface
-        return '{}://{}:{}{}{}/{}'.format(self.protocol, self.vendor, self.product,
-                                          ':' if self.index is None else ':{}'.format(self.index),
-                                          ':' if self.serial_no is None else ':{}'.format(self.serial_no), interface)
+        url = ''
+        url += f'{self.protocol}://{self.vendor}:{self.product}'
+        url += '' if self.serial_no is None else f':{self.serial_no}'
+        url += '' if self.index is None else f':{self.index}'
+        url += f'/{self.interface}'
+        return url
 
 
 

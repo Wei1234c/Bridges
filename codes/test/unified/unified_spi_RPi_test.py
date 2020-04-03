@@ -4,6 +4,7 @@ import spidev
 from bridges.tools import unified
 
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 try:
@@ -41,4 +42,5 @@ pin_id = 47
 spi = unified.SPI.from_RPi(get_spi(), GPIO = GPIO, pin_ss_id = pin_id)
 # spi = unified.SPI.from_RPi(get_spi())
 
-spi.transfer(address = 3, value = 0x00)
+result = spi.transfer(address = 3, value = 0x00)
+print(result)
