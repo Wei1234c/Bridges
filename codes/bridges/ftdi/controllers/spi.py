@@ -13,7 +13,7 @@ class SpiController(bridges.ftdi.Controller, pyftdi.spi.SpiController):
                  interface = bridges.ftdi.DEFAULT_INTERFACE,
                  serial_no = None,
                  **kwargs):
-        pyftdi.spi.SpiController.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo)
+        pyftdi.spi.SpiController.__init__(self, cs_count = cs_count, turbo = turbo)
         bridges.ftdi.Controller.__init__(self,
                                          product = product,
                                          interface = interface,
