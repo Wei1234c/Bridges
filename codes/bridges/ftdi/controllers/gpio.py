@@ -37,18 +37,18 @@ class GpioController(bridges.ftdi.Controller,
 
     @property
     def all_pins(self):
-        return self.MASK
+        return self._mask
 
 
     def set_pin_direction(self, pin_idx, output = False):
-        pins = self.MASK | (1 << pin_idx)
+        pins = self._mask | (1 << pin_idx)
         direction = self.direction & ~(1 << pin_idx) | (int(output) << pin_idx)
         self.set_direction(pins, direction)
 
 
     @property
     def width(self):
-        return self.MASK.bit_length()
+        return self._mask.bit_length()
 
 
     @property
