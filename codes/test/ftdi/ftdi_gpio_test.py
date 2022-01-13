@@ -1,19 +1,19 @@
 from bridges.ftdi.controllers.gpio import GpioController
-
-
-ctrl = GpioController()
-# ctrl = GpioController(product = 'ft2232h', interface = 2)
-print(ctrl.addressable_pins)
 from bridges.interfaces.micropython.machine import Pin
 
 
-pin_in = ctrl.Pin('ADBUS5', mode = Pin.IN)
-pin_out = ctrl.Pin('ADBUS6', mode = Pin.OUT)
-# pin_in = ctrl.Pin('BDBUS5', mode = I_machine.Pin.IN)
-# pin_out = ctrl.Pin('BDBUS6', mode = I_machine.Pin.OUT)
+machine = GpioController()
+# machine = GpioController(product = 'ft2232h', interface = 2)
+print(machine.addressable_pins)
 
-print(ctrl.pins_values)
-print(ctrl.pins_values_list)
+# p0 = machine.Pin('ACBUS5', mode = Pin.OUT)
+pin_in = machine.Pin('ADBUS5', mode = Pin.IN)
+pin_out = machine.Pin('ADBUS6', mode = Pin.OUT)
+# pin_in = machine.Pin('BDBUS5', mode = I_machine.Pin.IN)
+# pin_out = machine.Pin('BDBUS6', mode = I_machine.Pin.OUT)
+
+print(machine.pins_values)
+print(machine.pins_values_list)
 
 print('pin_in:', pin_in())
 
@@ -37,4 +37,4 @@ def blinks(pin):
 
 blinks(pin_out)
 
-ctrl.terminate()
+machine.terminate()
