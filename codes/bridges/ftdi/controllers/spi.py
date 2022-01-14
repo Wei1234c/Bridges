@@ -1,3 +1,5 @@
+from logging import getLogger
+
 import pyftdi.spi
 
 import bridges.ftdi

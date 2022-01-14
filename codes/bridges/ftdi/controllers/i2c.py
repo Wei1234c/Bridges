@@ -3,6 +3,7 @@ from array import array
 import pyftdi.i2c
 
 import bridges.ftdi
+import bridges.ftdi.controllers.spi
 from bridges.ftdi.adapters.micropython import machine
 from bridges.ftdi.adapters.rpi import smbus2
 
@@ -46,6 +47,16 @@ class I2cController(bridges.ftdi.Controller, pyftdi.i2c.I2cController):
         return self.get_smbus()
 
 
+    def get_gpio(self):
+        pyftdi.i2c.I2cController.get_gpio(self)  # do validation.
+        self._gpio_port = I2cGpioPort(controller = self)
+        return self._gpio_port
+
+
+    def GPIO(self):
+        return self.get_gpio()
+
+
     def _get_port(self, port, address):
         if not self._ftdi:
             raise pyftdi.i2c.I2cIOError("FTDI controller not initialized")
@@ -68,3 +79,8 @@ class I2cController(bridges.ftdi.Controller, pyftdi.i2c.I2cController):
     def _do_stop(self):
         cmd = array('B', self._stop)
         self._ftdi.write_data(cmd)
+
+
+
+class I2cGpioPort(bridges.ftdi.controllers.spi.SpiGpioPort):
+    pass
