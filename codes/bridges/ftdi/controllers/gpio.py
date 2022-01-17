@@ -1,20 +1,18 @@
 import pyftdi.gpio
+from pyftdi.gpio import GpioException
 
 import bridges.ftdi.controllers.spi
 
 
 
-class GpioController(bridges.ftdi.Controller,
-                     pyftdi.gpio.GpioController,
-                     bridges.ftdi.controllers.spi.SpiGpioPort):
+class GpioControllerBase(bridges.ftdi.Controller,
+                         bridges.ftdi.controllers.spi.SpiGpioPort):
 
     def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
                  product = bridges.ftdi.DEFAULT_PRODUCT,
                  interface = bridges.ftdi.DEFAULT_INTERFACE,
                  serial_no = None,
                  direction = 0, **kwargs):
-
-        pyftdi.gpio.GpioController.__init__(self)
 
         kwargs['direction'] = direction
         bridges.ftdi.Controller.__init__(self,
@@ -53,7 +51,7 @@ class GpioController(bridges.ftdi.Controller,
 
     @property
     def pins_values(self):
-        return pyftdi.gpio.GpioController.read(self)
+        raise NotImplementedError
 
 
     def set_pin_value(self, pin_idx, level):
@@ -61,3 +59,94 @@ class GpioController(bridges.ftdi.Controller,
         clear_mask = (1 << self.width) - 1 - (1 << pin_idx)
         value = self.pins_values & clear_mask | (level << pin_idx)
         self.write(value)
+
+
+
+class GpioAsyncController(pyftdi.gpio.GpioAsyncController, GpioControllerBase, ):
+
+    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
+                 product = bridges.ftdi.DEFAULT_PRODUCT,
+                 interface = bridges.ftdi.DEFAULT_INTERFACE,
+                 serial_no = None,
+                 direction = 0, **kwargs):
+        pyftdi.gpio.GpioAsyncController.__init__(self)
+
+        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
+                                    product = product,
+                                    interface = interface,
+                                    serial_no = serial_no,
+                                    direction = direction, **kwargs)
+
+
+    @property
+    def pins_values(self):
+        return pyftdi.gpio.GpioAsyncController.read(self)
+
+
+
+class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase, ):
+
+    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
+                 product = bridges.ftdi.DEFAULT_PRODUCT,
+                 interface = bridges.ftdi.DEFAULT_INTERFACE,
+                 serial_no = None,
+                 direction = 0, **kwargs):
+
+        pyftdi.gpio.GpioSyncController.__init__(self)
+
+        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
+                                    product = product,
+                                    interface = interface,
+                                    serial_no = serial_no,
+                                    direction = direction, **kwargs)
+
+
+    @property
+    def pins_values(self):
+        return self.read()
+
+
+    def write(self, out):
+        if not self.is_connected:
+            raise GpioException('Not connected')
+
+        return pyftdi.gpio.GpioSyncController.exchange(self, bytes([out]))[0]
+
+
+    def read(self):
+        return self.write(0x00)
+
+
+
+class GpioMpsseController(pyftdi.gpio.GpioMpsseController, GpioControllerBase, ):
+
+    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
+                 product = bridges.ftdi.DEFAULT_PRODUCT,
+                 interface = bridges.ftdi.DEFAULT_INTERFACE,
+                 serial_no = None,
+                 direction = 0,
+                 frequency = 6.0E6,
+                 **kwargs):
+        pyftdi.gpio.GpioMpsseController.__init__(self)
+
+        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
+                                    product = product,
+                                    interface = interface,
+                                    serial_no = serial_no,
+                                    direction = direction,
+                                    frequency = frequency,
+                                    **kwargs)
+
+
+    @property
+    def pins_values(self):
+        return pyftdi.gpio.GpioMpsseController.read(self)
+
+
+    @property
+    def pins_values(self):
+        return self.read()[0]
+
+
+
+GpioController = GpioAsyncController

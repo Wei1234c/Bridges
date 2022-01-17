@@ -1,4 +1,6 @@
-from bridges.ftdi.controllers.gpio import GpioController
+# from bridges.ftdi.controllers.gpio import GpioAsyncController as GpioController
+# from bridges.ftdi.controllers.gpio import GpioSyncController as GpioController
+from bridges.ftdi.controllers.gpio import GpioMpsseController as GpioController
 from bridges.interfaces.micropython.machine import Pin
 
 
