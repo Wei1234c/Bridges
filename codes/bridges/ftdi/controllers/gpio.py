@@ -87,9 +87,9 @@ class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase):
 
 class GpioMpsseController(pyftdi.gpio.GpioMpsseController, GpioControllerBase):
 
-    def __init__(self, frequency = 6.0E6, *args, **kwargs):
+    def __init__(self, *args, frequency = 6.0E6, **kwargs):
         pyftdi.gpio.GpioMpsseController.__init__(self)
-        GpioControllerBase.__init__(self, frequency = frequency, *args, **kwargs)
+        GpioControllerBase.__init__(self, *args, frequency = frequency, **kwargs)
 
 
     @property
