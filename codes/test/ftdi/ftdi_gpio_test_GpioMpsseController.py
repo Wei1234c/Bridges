@@ -7,9 +7,8 @@ from bridges.interfaces.micropython.machine import Pin
 machine = GpioController()
 print(machine.addressable_pins)
 
-pin_1 = machine.Pin('ADBUS5', mode = Pin.OUT)
-# pin_2 = machine.Pin('ACBUS5', mode = Pin.OUT)
-pin_out = pin_1
+pin_out = machine.Pin('ADBUS5', mode = Pin.OUT)
+# pin_out = machine.Pin('ACBUS5', mode = Pin.OUT)
 
 print(machine.pins_values)
 print(machine.pins_values_list)
