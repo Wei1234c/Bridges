@@ -1,5 +1,4 @@
 import pyftdi.gpio
-from pyftdi.gpio import GpioException
 
 import bridges.ftdi.controllers.spi
 
@@ -78,14 +77,11 @@ class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase):
 
 
     def write(self, out):
-        if not self.is_connected:
-            raise GpioException('Not connected')
-
-        return self.exchange(bytes([out]))[0]
+        self.exchange(bytes([out]))
 
 
     def read(self):
-        return self.write(0x00)
+        return self.exchange(0x00)[0]
 
 
 
