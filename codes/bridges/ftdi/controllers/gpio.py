@@ -51,7 +51,7 @@ class GpioControllerBase(bridges.ftdi.Controller,
 
     @property
     def pins_values(self):
-        raise NotImplementedError
+        return self.read()
 
 
     def set_pin_value(self, pin_idx, level):
@@ -62,29 +62,19 @@ class GpioControllerBase(bridges.ftdi.Controller,
 
 
 
-class GpioAsyncController(pyftdi.gpio.GpioAsyncController, GpioControllerBase, ):
+class GpioAsyncController(pyftdi.gpio.GpioAsyncController, GpioControllerBase):
 
     def __init__(self, *args, **kwargs):
         pyftdi.gpio.GpioAsyncController.__init__(self)
         GpioControllerBase.__init__(self, *args, **kwargs)
 
 
-    @property
-    def pins_values(self):
-        return pyftdi.gpio.GpioAsyncController.read(self)
 
-
-
-class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase, ):
+class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase):
 
     def __init__(self, *args, **kwargs):
         pyftdi.gpio.GpioSyncController.__init__(self)
         GpioControllerBase.__init__(self, *args, **kwargs)
-
-
-    @property
-    def pins_values(self):
-        return self.read()
 
 
     def write(self, out):
@@ -99,16 +89,11 @@ class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase, ):
 
 
 
-class GpioMpsseController(pyftdi.gpio.GpioMpsseController, GpioControllerBase, ):
+class GpioMpsseController(pyftdi.gpio.GpioMpsseController, GpioControllerBase):
 
     def __init__(self, frequency = 6.0E6, *args, **kwargs):
         pyftdi.gpio.GpioMpsseController.__init__(self)
         GpioControllerBase.__init__(self, frequency = frequency, *args, **kwargs)
-
-
-    @property
-    def pins_values(self):
-        return pyftdi.gpio.GpioMpsseController.read(self)
 
 
     @property
