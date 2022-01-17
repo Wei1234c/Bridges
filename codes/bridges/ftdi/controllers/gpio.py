@@ -64,18 +64,9 @@ class GpioControllerBase(bridges.ftdi.Controller,
 
 class GpioAsyncController(pyftdi.gpio.GpioAsyncController, GpioControllerBase, ):
 
-    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
-                 product = bridges.ftdi.DEFAULT_PRODUCT,
-                 interface = bridges.ftdi.DEFAULT_INTERFACE,
-                 serial_no = None,
-                 direction = 0, **kwargs):
+    def __init__(self, *args, **kwargs):
         pyftdi.gpio.GpioAsyncController.__init__(self)
-
-        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
-                                    product = product,
-                                    interface = interface,
-                                    serial_no = serial_no,
-                                    direction = direction, **kwargs)
+        GpioControllerBase.__init__(self, *args, **kwargs)
 
 
     @property
@@ -86,19 +77,9 @@ class GpioAsyncController(pyftdi.gpio.GpioAsyncController, GpioControllerBase, )
 
 class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase, ):
 
-    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
-                 product = bridges.ftdi.DEFAULT_PRODUCT,
-                 interface = bridges.ftdi.DEFAULT_INTERFACE,
-                 serial_no = None,
-                 direction = 0, **kwargs):
-
+    def __init__(self, *args, **kwargs):
         pyftdi.gpio.GpioSyncController.__init__(self)
-
-        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
-                                    product = product,
-                                    interface = interface,
-                                    serial_no = serial_no,
-                                    direction = direction, **kwargs)
+        GpioControllerBase.__init__(self, *args, **kwargs)
 
 
     @property
@@ -120,22 +101,9 @@ class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase, ):
 
 class GpioMpsseController(pyftdi.gpio.GpioMpsseController, GpioControllerBase, ):
 
-    def __init__(self, silent_clock = False, cs_count = 1, turbo = True,
-                 product = bridges.ftdi.DEFAULT_PRODUCT,
-                 interface = bridges.ftdi.DEFAULT_INTERFACE,
-                 serial_no = None,
-                 direction = 0,
-                 frequency = 6.0E6,
-                 **kwargs):
+    def __init__(self, frequency = 6.0E6, *args, **kwargs):
         pyftdi.gpio.GpioMpsseController.__init__(self)
-
-        GpioControllerBase.__init__(self, silent_clock = silent_clock, cs_count = cs_count, turbo = turbo,
-                                    product = product,
-                                    interface = interface,
-                                    serial_no = serial_no,
-                                    direction = direction,
-                                    frequency = frequency,
-                                    **kwargs)
+        GpioControllerBase.__init__(self, frequency = frequency, *args, **kwargs)
 
 
     @property
