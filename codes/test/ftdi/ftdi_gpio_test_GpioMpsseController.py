@@ -8,7 +8,7 @@ machine = GpioController()
 print(machine.addressable_pins)
 
 pin_1 = machine.Pin('ADBUS5', mode = Pin.OUT)
-pin_2 = machine.Pin('ACBUS5', mode = Pin.OUT)
+# pin_2 = machine.Pin('ACBUS5', mode = Pin.OUT)
 pin_out = pin_1
 
 print(machine.pins_values)

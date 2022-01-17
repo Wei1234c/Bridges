@@ -81,7 +81,7 @@ class GpioSyncController(pyftdi.gpio.GpioSyncController, GpioControllerBase):
         if not self.is_connected:
             raise GpioException('Not connected')
 
-        return pyftdi.gpio.GpioSyncController.exchange(self, bytes([out]))[0]
+        return self.exchange(bytes([out]))[0]
 
 
     def read(self):
