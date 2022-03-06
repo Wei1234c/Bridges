@@ -63,11 +63,7 @@ class Controller:
 
     def __del__(self):
         if self.is_open:
-            self.terminate()
-
-
-    def close(self):
-        self.terminate()
+            self.close()
 
 
     @property
