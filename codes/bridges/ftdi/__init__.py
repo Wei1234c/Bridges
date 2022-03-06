@@ -66,6 +66,11 @@ class Controller:
             self.close()
 
 
+    def close(self):
+        if self._ftdi:
+            self._ftdi.close()
+
+
     @property
     def is_open(self):
         try:

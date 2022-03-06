@@ -17,7 +17,7 @@ class SpiDev( I_spidev.SpiDev):
 
 
     def __exit__(self, *args, **kwargs):
-        self._controller = None
+        self.__del__()
 
 
     def __del__(self):

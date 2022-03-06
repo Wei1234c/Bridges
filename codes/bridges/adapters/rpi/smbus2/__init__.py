@@ -15,7 +15,7 @@ class SMBus(I_smbus2.SMBus):
 
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self._controller = None
+        self.__del__()
 
 
     def __del__(self):
